@@ -33,7 +33,9 @@ const {
 // < 16
 
 function exponencial(exp) {
-
+        return function (num) {
+            return num ** exp;
+        }
 }
 
 // ----- Recursión -----
@@ -70,7 +72,17 @@ function exponencial(exp) {
 // Aclaraciones: el segundo parametro que recibe la funcion ('direccion') puede ser pasado vacio (null)
 
 function direcciones(laberinto) {
+    let dir = '';
+    
+    if (!laberinto) return '';
+    
+    for (prop in laberinto) {
 
+        if (typeof laberinto[prop] === 'object') return dir = prop + direcciones(laberinto[prop]);
+        
+        if (laberinto[prop] === 'destino') return dir = dir + prop;
+    }
+    return '';
 }
 
 
